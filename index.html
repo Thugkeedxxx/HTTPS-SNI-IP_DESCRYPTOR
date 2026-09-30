@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffffff">
+<meta name="description" content="THUGKEED NETWORK — Network tools, technical guides and developer utilities.">
+<title>THUGKEED NETWORK</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+:root{
+    --red:#e3262e;
+    --red-dark:#c91820;
+    --red-soft:#fff5f5;
+    --text:#171717;
+    --muted:#707070;
+    --border:#e7e7e7;
+    --soft:#f7f7f7;
+    --white:#fff;
+    --green:#159447;
+    --blue:#2877cf;
+}
+
+html{scroll-behavior:smooth}
+
+body{
+    background:#fff;
+    color:var(--text);
+    font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",
+    Roboto,Arial,sans-serif;
+    line-height:1.5;
+}
+
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+
+.site-header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(255,255,255,.96);
+    border-bottom:1px solid var(--border);
+    backdrop-filter:blur(12px);
+}
+
+.nav{
+    width:min(1180px,calc(100% - 32px));
+    height:66px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.brand{
+    color:var(--text);
+    text-decoration:none;
+    font-weight:900;
+    font-size:18px;
+    letter-spacing:-.7px;
+    white-space:nowrap;
+}
+
+.brand span{color:var(--red)}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:25px;
+}
+
+.nav-links a{
+    color:#555;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:600;
+}
+
+.nav-links a:hover{color:var(--red)}
+
+.nav-search{width:180px}
+
+.nav-search input{
+    width:100%;
+    height:36px;
+    border:1px solid var(--border);
+    border-radius:8px;
+    outline:none;
+    padding:0 12px;
+    font-size:12px;
+    background:#fafafa;
+}
+
+.nav-search input:focus{
+    border-color:#d99da0;
+    background:#fff;
+}
+
+.menu-btn{
+    display:none;
+    border:0;
+    background:transparent;
+    font-size:23px;
+}
+
+/* HERO */
+
+.hero{
+    width:min(1180px,calc(100% - 32px));
+    margin:auto;
+    padding:85px 0 65px;
+    display:grid;
+    grid-template-columns:1.15fr .85fr;
+    gap:70px;
+    align-items:center;
+}
+
+.hero-label{
+    color:var(--red);
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:.8px;
+    text-transform:uppercase;
+    margin-bottom:15px;
+}
+
+.hero h1{
+    max-width:700px;
+    font-size:clamp(40px,6vw,68px);
+    line-height:1.02;
+    letter-spacing:-3.5px;
+}
+
+.hero h1 span{color:var(--red)}
+
+.hero-text{
+    max-width:620px;
+    color:var(--muted);
+    font-size:15px;
+    margin-top:20px;
+}
+
+.hero-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:27px;
+}
+
+.btn{
+    height:42px;
+    padding:0 18px;
+    border-radius:8px;
+    border:1px solid transparent;
+    font-size:12px;
+    font-weight:700;
+    transition:.2s;
+}
+
+.btn-red{
+    background:var(--red);
+    color:#fff;
+}
+
+.btn-red:hover{
+    background:var(--red-dark);
+    transform:translateY(-1px);
+}
+
+.btn-white{
+    background:#fff;
+    border-color:var(--border);
+    color:var(--text);
+}
+
+.btn-white:hover{
+    border-color:#cfcfcf;
+}
+
+.hero-panel{
+    border:1px solid var(--border);
+    border-radius:14px;
+    overflow:hidden;
+    background:#fff;
+}
+
+.panel-top{
+    height:42px;
+    padding:0 15px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom:1px solid var(--border);
+}
+
+.panel-title{
+    font-size:11px;
+    font-weight:800;
+}
+
+.live{
+    color:var(--green);
+    font-size:10px;
+    font-weight:700;
+}
+
+.panel-body{padding:18px}
+
+.status-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:13px 0;
+    border-bottom:1px solid #f0f0f0;
+    font-size:12px;
+}
+
+.status-row:last-child{border-bottom:0}
+.status-row span{color:var(--muted)}
+.status-ok{color:var(--green);font-weight:700}
+
+/* SECTIONS */
+
+.section{
+    width:min(1180px,calc(100% - 32px));
+    margin:auto;
+    padding:55px 0;
+}
+
+.section.gray{
+    width:100%;
+    max-width:none;
+    background:#fafafa;
+}
+
+.section.gray>.inner{
+    width:min(1180px,calc(100% - 32px));
+    margin:auto;
+}
+
+.section-heading{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    gap:20px;
+    margin-bottom:22px;
+}
+
+.section-heading h2{
+    font-size:24px;
+    letter-spacing:-1px;
+}
+
+.section-heading p{
+    color:var(--muted);
+    font-size:12px;
+}
+
+/* CATEGORIES */
+
+.categories{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    padding-bottom:5px;
+    margin-bottom:20px;
+}
+
+.category{
+    flex-shrink:0;
+    border:1px solid var(--border);
+    background:#fff;
+    color:#666;
+    border-radius:7px;
+    padding:8px 13px;
+    font-size:11px;
+    font-weight:600;
+}
+
+.category.active,
+.category:hover{
+    background:var(--red);
+    border-color:var(--red);
+    color:#fff;
+}
+
+/* APPS */
+
+.apps{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.app-card{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:13px;
+    padding:19px;
+    transition:.2s;
+}
+
+.app-card:hover{
+    border-color:#d7b2b4;
+    box-shadow:0 12px 35px rgba(0,0,0,.06);
+    transform:translateY(-3px);
+}
+
+.app-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.app-icon{
+    width:52px;
+    height:52px;
+    border-radius:12px;
+    display:grid;
+    place-items:center;
+    color:#fff;
+    font-size:22px;
+    font-weight:900;
+}
+
+.icon-ha{background:#df292f}
+.icon-injector{background:#2877cf}
+.icon-custom{background:#7657bd}
+.icon-tls{background:#159eaa}
+.icon-bd{background:#e18b32}
+.icon-npv{background:#626b75}
+
+.demo{
+    border:1px solid #ead7d8;
+    color:var(--red);
+    background:#fff8f8;
+    border-radius:5px;
+    padding:4px 7px;
+    font-size:8px;
+    font-weight:800;
+}
+
+.app-card h3{
+    font-size:15px;
+    margin-top:17px;
+}
+
+.app-card p{
+    color:var(--muted);
+    font-size:11px;
+    line-height:1.7;
+    margin-top:7px;
+    min-height:57px;
+}
+
+.app-meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:5px;
+    margin-top:13px;
+}
+
+.meta{
+    background:#f5f5f5;
+    color:#666;
+    border-radius:5px;
+    padding:5px 7px;
+    font-size:8px;
+}
+
+.app-button{
+    width:100%;
+    height:38px;
+    margin-top:17px;
+    border:1px solid var(--border);
+    background:#fff;
+    color:var(--text);
+    border-radius:7px;
+    font-size:10px;
+    font-weight:700;
+}
+
+.app-button:hover{
+    border-color:var(--red);
+    color:var(--red);
+}
+
+/* TOOLS */
+
+.tool-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+}
+
+.tool{
+    border:1px solid var(--border);
+    background:#fff;
+    border-radius:11px;
+    padding:17px;
+    transition:.2s;
+    cursor:pointer;
+}
+
+.tool:hover{
+    border-color:#d6aeb0;
+    transform:translateY(-2px);
+}
+
+.tool-icon{
+    color:var(--red);
+    font-size:21px;
+}
+
+.tool h3{
+    margin-top:12px;
+    font-size:12px;
+}
+
+.tool p{
+    margin-top:5px;
+    color:var(--muted);
+    font-size:9px;
+    line-height:1.6;
+}
+
+/* GUIDES */
+
+.guides{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.guide{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:19px;
+}
+
+.guide-label{
+    color:var(--red);
+    font-size:9px;
+    font-weight:800;
+}
+
+.guide h3{
+    font-size:14px;
+    margin-top:12px;
+}
+
+.guide p{
+    color:var(--muted);
+    font-size:10px;
+    margin-top:7px;
+    line-height:1.7;
+}
+
+.read{
+    display:inline-block;
+    color:var(--red);
+    text-decoration:none;
+    font-size:10px;
+    font-weight:700;
+    margin-top:15px;
+}
+
+/* COMMUNITY */
+
+.community-box{
+    background:#171717;
+    color:#fff;
+    border-radius:16px;
+    padding:35px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:30px;
+}
+
+.community-box h2{
+    font-size:25px;
+    letter-spacing:-1px;
+}
+
+.community-box p{
+    color:#aaa;
+    font-size:11px;
+    max-width:580px;
+    margin-top:8px;
+}
+
+/* FOOTER */
+
+footer{
+    border-top:1px solid var(--border);
+    background:#fff;
+}
+
+.footer-inner{
+    width:min(1180px,calc(100% - 32px));
+    margin:auto;
+    padding:30px 0;
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.footer-brand{
+    font-weight:900;
+    font-size:13px;
+}
+
+.footer-brand span{color:var(--red)}
+.footer-copy{color:var(--muted);font-size:9px}
+
+/* MODAL */
+
+.modal{
+    position:fixed;
+    inset:0;
+    z-index:4000;
+    background:rgba(20,20,20,.4);
+    backdrop-filter:blur(4px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:18px;
+    opacity:0;
+    visibility:hidden;
+    transition:.2s;
+}
+
+.modal.show{
+    opacity:1;
+    visibility:visible;
+}
+
+.modal-box{
+    width:min(100%,600px);
+    max-height:90vh;
+    overflow:auto;
+    background:#fff;
+    border-radius:14px;
+    border:1px solid var(--border);
+    padding:24px;
+}
+
+.modal-close{
+    float:right;
+    border:0;
+    background:#f4f4f4;
+    width:30px;
+    height:30px;
+    border-radius:50%;
+}
+
+.modal-icon{
+    width:55px;
+    height:55px;
+    display:grid;
+    place-items:center;
+    color:#fff;
+    border-radius:12px;
+    font-size:22px;
+    margin-bottom:15px;
+}
+
+.modal h2{font-size:22px}
+
+.modal p{
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.8;
+    margin-top:10px;
+}
+
+.modal-note{
+    margin-top:18px;
+    padding:12px;
+    background:#fff7f7;
+    border-left:3px solid var(--red);
+    color:#765b5d;
+    font-size:10px;
+}
+
+/* LAB */
+
+.lab{
+    margin-top:20px;
+}
+
+.lab textarea{
+    width:100%;
+    min-height:150px;
+    resize:vertical;
+    border:1px solid var(--border);
+    border-radius:9px;
+    padding:12px;
+    outline:none;
+    font-family:monospace;
+    font-size:11px;
+}
+
+.lab textarea:focus{
+    border-color:var(--red);
+}
+
+.lab-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:10px;
+}
+
+.lab-output{
+    margin-top:15px;
+    padding:14px;
+    background:#f7f7f7;
+    border:1px solid var(--border);
+    border-radius:9px;
+    font-family:monospace;
+    font-size:10px;
+    line-height:1.8;
+    white-space:pre-wrap;
+    word-break:break-word;
+}
+
+.upload{
+    border:2px dashed #ddd;
+    border-radius:10px;
+    padding:25px;
+    text-align:center;
+    margin-top:12px;
+}
+
+.upload input{margin-top:10px}
+
+/* TOAST */
+
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:25px;
+    transform:translate(-50%,20px);
+    background:#171717;
+    color:#fff;
+    padding:11px 16px;
+    border-radius:8px;
+    font-size:11px;
+    opacity:0;
+    pointer-events:none;
+    transition:.25s;
+    z-index:6000;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translate(-50%,0);
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+    .hero{
+        grid-template-columns:1fr;
+        gap:35px;
+    }
+
+    .apps{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .tool-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:700px){
+
+    .nav-links{display:none}
+
+    .nav-search{width:140px}
+
+    .hero{padding-top:55px}
+
+    .hero h1{letter-spacing:-2.5px}
+
+    .apps,.guides{
+        grid-template-columns:1fr;
+    }
+
+    .section-heading{
+        align-items:start;
+        flex-direction:column;
+    }
+
+    .community-box{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .footer-inner{
+        flex-direction:column;
+    }
+}
+
+@media(max-width:480px){
+
+    .nav{
+        width:calc(100% - 24px);
+    }
+
+    .brand{font-size:15px}
+
+    .nav-search{width:125px}
+
+    .hero,.section{
+        width:calc(100% - 24px);
+    }
+
+    .hero h1{font-size:42px}
+
+    .tool-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .community-box{padding:25px}
+}
+</style>
+</head>
+
+<body>
+
+<header class="site-header">
+<nav class="nav">
+
+<a href="#" class="brand">
+    THUGKEED<span>NETWORK</span>
+</a>
+
+<div class="nav-links">
+    <a href="#tools">Tools</a>
+    <a href="#apps">Apps</a>
+    <a href="#guides">Guides</a>
+    <a href="#community">Community</a>
+</div>
+
+<div class="nav-search">
+    <input id="search" type="search"
+           placeholder="Search..."
+           autocomplete="off">
+</div>
+
+</nav>
+</header>
+
+<main>
+
+<section class="hero">
+
+<div>
+
+<div class="hero-label">
+    Independent network resource
+</div>
+
+<h1>
+    Tools, guides &<br>
+    <span>network utilities.</span>
+</h1>
+
+<p class="hero-text">
+    Explore network applications, configuration formats,
+    HTTP and TLS concepts, file analysis utilities and
+    technical guides from one place.
+</p>
+
+<div class="hero-actions">
+
+<button class="btn btn-red"
+        onclick="scrollToSection('apps')">
+    Explore apps
+</button>
+
+<button class="btn btn-white"
+        onclick="scrollToSection('tools')">
+    Open tools
+</button>
+
+</div>
+</div>
+
+<div class="hero-panel">
+
+<div class="panel-top">
+    <span class="panel-title">NETWORK STATUS</span>
+    <span class="live">● ONLINE</span>
+</div>
+
+<div class="panel-body">
+
+<div class="status-row">
+    <span>Platform</span>
+    <strong class="status-ok">READY</strong>
+</div>
+
+<div class="status-row">
+    <span>Tools</span>
+    <strong class="status-ok">6 AVAILABLE</strong>
+</div>
+
+<div class="status-row">
+    <span>File analysis</span>
+    <strong class="status-ok">LOCAL</strong>
+</div>
+
+<div class="status-row">
+    <span>Last update</span>
+    <strong>2026</strong>
+</div>
+
+</div>
+</div>
+
+</section>
+
+<section class="section" id="apps">
+
+<div class="section-heading">
+<div>
+<h2>Popular apps</h2>
+<p>Information and learning resources for network applications.</p>
+</div>
+</div>
+
+<div class="categories">
+
+<button class="category active" data-category="all">All</button>
+<button class="category" data-category="tunnel">Tunnel</button>
+<button class="category" data-category="http">HTTP</button>
+<button class="category" data-category="tls">TLS</button>
+<button class="category" data-category="network">Network</button>
+
+</div>
+
+<div class="apps" id="appGrid">
+
+<article class="app-card"
+data-name="HA Tunnel Plus"
+data-category="tunnel">
+
+<div class="app-header">
+<div class="app-icon icon-ha">H</div>
+<div class="demo">DEMO</div>
+</div>
+
+<h3>HA Tunnel Plus</h3>
+
+<p>
+A tunneling application with support for
+connection configurations and SSH-based
+networking features.
+</p>
+
+<div class="app-meta">
+<span class="meta">SSH</span>
+<span class="meta">SNI</span>
+<span class="meta">HTTP</span>
+<span class="meta">.HAT</span>
+</div>
+
+<button class="app-button"
+onclick="openApp('ha')">
+Explore app
+</button>
+
+</article>
+
+<article class="app-card"
+data-name="HTTP Injector"
+data-category="http">
+
+<div class="app-header">
+<div class="app-icon icon-injector">I</div>
+<div class="demo">DEMO</div>
+</div>
+
+<h3>HTTP Injector</h3>
+
+<p>
+A network utility supporting technologies
+including SSH, SSL/TLS, Shadowsocks,
+V2Ray and DNS tunneling.
+</p>
+
+<div class="app-meta">
+<span class="meta">SSH</span>
+<span class="meta">TLS</span>
+<span class="meta">V2Ray</span>
+</div>
+
+<button class="app-button"
+onclick="openApp('injector')">
+Explore app
+</button>
+
+</article>
+
+<article class="app-card"
+data-name="HTTP Custom"
+data-category="http">
+
+<div class="app-header">
+<div class="app-icon icon-custom">C</div>
+<div class="demo">DEMO</div>
+</div>
+
+<h3>HTTP Custom</h3>
+
+<p>
+HTTP-focused networking utility with
+configuration and connection-oriented
+features.
+</p>
+
+<div class="app-meta">
+<span class="meta">HTTP</span>
+<span class="meta">SSH</span>
+<span class="meta">SSL</span>
+</div>
+
+<button class="app-button"
+onclick="openApp('custom')">
+Explore app
+</button>
+
+</article>
+
+<article class="app-card"
+data-name="TLS Inspector"
+data-category="tls">
+
+<div class="app-header">
+<div class="app-icon icon-tls">T</div>
+<div class="demo">LAB</div>
+</div>
+
+<h3>TLS Inspector</h3>
+
+<p>
+Learn how TLS connections, certificates,
+hostnames and secure HTTP connections
+work.
+</p>
+
+<div class="app-meta">
+<span class="meta">TLS</span>
+<span class="meta">SNI</span>
+<span class="meta">HTTPS</span>
+</div>
+
+<button class="app-button"
+onclick="openTool('tls')">
+Open inspector
+</button>
+
+</article>
+
+<article class="app-card"
+data-name="BD Net"
+data-category="network">
+
+<div class="app-header">
+<div class="app-icon icon-bd">B</div>
+<div class="demo">DEMO</div>
+</div>
+
+<h3>BD Net</h3>
+
+<p>
+Network application reference page with
+space for documentation, supported features
+and community resources.
+</p>
+
+<div class="app-meta">
+<span class="meta">NETWORK</span>
+<span class="meta">APP</span>
+</div>
+
+<button class="app-button"
+onclick="openApp('bdnet')">
+View information
+</button>
+
+</article>
+
+<article class="app-card"
+data-name="NPV"
+data-category="network">
+
+<div class="app-header">
+<div class="app-icon icon-npv">N</div>
+<div class="demo">DEMO</div>
+</div>
+
+<h3>NPV</h3>
+
+<p>
+Network utility reference section for
+learning about connection technologies
+and configuration concepts.
+</p>
+
+<div class="app-meta">
+<span class="meta">NETWORK</span>
+<span class="meta">CONFIG</span>
+</div>
+
+<button class="app-button"
+onclick="openApp('npv')">
+View information
+</button>
+
+</article>
+
+</div>
+</section>
+
+<section class="section gray" id="tools">
+
+<div class="inner">
+
+<div class="section-heading">
+<div>
+<h2>Network tools</h2>
+<p>Browser-based utilities for analysis and development.</p>
+</div>
+</div>
+
+<div class="tool-grid">
+
+<div class="tool" onclick="openTool('file')">
+<div class="tool-icon">▣</div>
+<h3>File Descriptor</h3>
+<p>Inspect file metadata, hashes and content.</p>
+</div>
+
+<div class="tool" onclick="openTool('headers')">
+<div class="tool-icon">⌘</div>
+<h3>HTTP Header Analyzer</h3>
+<p>Read and inspect HTTP header structures.</p>
+</div>
+
+<div class="tool" onclick="openTool('tls')">
+<div class="tool-icon">◇</div>
+<h3>TLS Inspector</h3>
+<p>Explore TLS and HTTPS concepts.</p>
+</div>
+
+<div class="tool" onclick="openTool('encoding')">
+<div class="tool-icon">⌘</div>
+<h3>Encoding Lab</h3>
+<p>Work with Base64, URLs and hexadecimal.</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<section class="section" id="guides">
+
+<div class="section-heading">
+<div>
+<h2>Latest guides</h2>
+<p>Simple explanations for networking concepts.</p>
+</div>
+</div>
+
+<div class="guides">
+
+<article class="guide">
+<div class="guide-label">HTTP</div>
+<h3>Understanding HTTP headers</h3>
+<p>
+Learn what common request and response
+headers mean and how developers use them.
+</p>
+<a class="read" href="#tools">Read guide →</a>
+</article>
+
+<article class="guide">
+<div class="guide-label">TLS</div>
+<h3>What is SNI?</h3>
+<p>
+Understand the role of Server Name Indication
+during modern TLS connections.
+</p>
+<a class="read" href="#tools">Read guide →</a>
+</article>
+
+<article class="guide">
+<div class="guide-label">FILES</div>
+<h3>Understanding configuration files</h3>
+<p>
+Learn how structured configuration files store
+settings, metadata and connection parameters.
+</p>
+<a class="read" href="#tools">Read guide →</a>
+</article>
+
+</div>
+</section>
+
+<section class="section" id="community">
+
+<div class="community-box">
+
+<div>
+<h2>Built for developers & learners.</h2>
+<p>
+THUGKEED NETWORK brings technical references,
+browser utilities and educational networking
+resources together in one lightweight platform.
+</p>
+</div>
+
+<button class="btn btn-red"
+onclick="showToast('Welcome to THUGKEED NETWORK')">
+Explore platform
+</button>
+
+</div>
+
+</section>
+
+</main>
+
+<footer>
+
+<div class="footer-inner">
+
+<div class="footer-brand">
+THUGKEED<span>NETWORK</span>
+</div>
+
+<div class="footer-copy">
+© 2026 THUGKEED NETWORK · Built for learning & development
+</div>
+
+</div>
+
+</footer>
+
+
+<!-- MODAL -->
+
+<div class="modal" id="modal">
+
+<div class="modal-box">
+
+<button class="modal-close"
+onclick="closeModal()">×</button>
+
+<div id="modalContent"></div>
+
+</div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+/* =========================
+   BASIC NAVIGATION
+========================= */
+
+function scrollToSection(id){
+    document.getElementById(id)?.scrollIntoView({
+        behavior:"smooth"
+    });
+}
+
+
+/* =========================
+   TOAST
+=====================
